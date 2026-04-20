@@ -1,0 +1,19 @@
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        ''' Linear time solution O(n)
+            We can try a two pointer technique, 
+           Left pointer all the way on the left, and the right pointer all the way on the right
+            Max area goes from 8 to 49, 
+        '''
+
+        res = 0
+        l, r = 0, len(heights)-1
+        while l < r:
+            area = (r - l) * min(heights[l], heights[r])
+            res = max(res, area)
+
+            if heights[l] < heights[r]:
+                l += 1 # increment left pointer by 1 
+            else:
+                r-= 1
+        return res
